@@ -12,3 +12,7 @@ public protocol LocationProtocol {
     var lat: Double { get }
     var long: Double { get }
 }
+
+public protocol FromLocationEntityProtocol {
+    static func fromEntity(_ entity: LocationProtocol) -> Self
+}

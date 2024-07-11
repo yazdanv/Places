@@ -1,20 +1,15 @@
 //
-//  File.swift
+//  DefaultNetworkService.swift
 //  
 //
-//  Created by Yazdan Vakili on 08/07/2024.
+//  Created by Yazdan Vakili on 09/07/2024.
 //
 
 import Foundation
 import Combine
 
-public protocol NetworkServiceProtocol {
-    var urlProvider: UrlProvider { get }
-    
-    func getRequest<T: Codable>(url: URL?) -> AnyPublisher<T, Error>?
-}
-
-extension NetworkServiceProtocol {
+public struct DefaultNetworkService: NetworkServiceProtocol {
+    public init() {}
     
     public func getRequest<T: Codable>(url: URL?) -> AnyPublisher<T, Error>? {
         guard let url = url else { return nil }

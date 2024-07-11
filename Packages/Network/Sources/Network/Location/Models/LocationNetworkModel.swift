@@ -9,7 +9,7 @@ import Foundation
 import Models
 
 public struct LocationNetworkModel: LocationProtocol, Codable {
-    public var name: String?
-    public var lat: Double
-    public var long: Double
+    public let name: String?
+    public let lat: Double
+    public let long: Double
 }

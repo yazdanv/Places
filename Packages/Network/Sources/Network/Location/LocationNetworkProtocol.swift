@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import Models
 
-public protocol LocationNetworkProtocol: NetworkServiceProtocol {
+public protocol LocationNetworkProtocol: BaseNetworkServiceProtocol {
     
     func getLocations() -> AnyPublisher<any LocationsProtocol, Error>?
     

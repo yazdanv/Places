@@ -12,5 +12,5 @@ public struct LocationsNetworkModel: LocationsProtocol, Codable {
     
     public typealias LocationItem = LocationNetworkModel
     
-    public var locations: [LocationItem]
+    public let locations: [LocationItem]
 }

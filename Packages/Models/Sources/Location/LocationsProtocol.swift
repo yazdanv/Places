@@ -11,3 +11,7 @@ public protocol LocationsProtocol {
     associatedtype LocationItem: LocationProtocol
     var locations: [LocationItem] { get }
 }
+
+public protocol FromLocationsEntityProtocol {
+    static func fromEntity(_ entity: any LocationsProtocol) -> Self
+}
