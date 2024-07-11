@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Places App is a sample application demonstrating best practices for building robust and maintainable iOS apps using MVVM (Model-View-ViewModel) architecture and a layered repository pattern.
+The Places App is a sample application, using a list of locations to open the wikipedia app with a deeplink and demonstrating best practices for building robust and maintainable iOS apps using MVVM (Model-View-ViewModel) architecture and a layered repository pattern.
 
 ## Architecture
 
