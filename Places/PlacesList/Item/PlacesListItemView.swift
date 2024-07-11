@@ -12,9 +12,7 @@ struct PlacesListItemView: View {
     let viewModel: PlacesListItemViewModel
     
     var body: some View {
-        Button(action: viewModel.clickOnLocation) {
-            PlacesListItemContentView(viewModel: viewModel)
-        }
+        PlacesListItemContentView(viewModel: viewModel)
         .padding()
         .background(
             LinearGradient(gradient: Gradient(colors: [Color.random, Color.random]), startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -24,18 +22,51 @@ struct PlacesListItemView: View {
                 .cornerRadius(10)
                 .shadow(radius: 5)
         )
-        
         .padding([.horizontal, .top])
     }
 }
 
 private struct PlacesListItemContentView: View {
+    
+    let viewModel: PlacesListItemViewModel
+    
+    var body: some View {
+        if let location = viewModel.location {
+            Button(action: viewModel.clickOnLocation) {
+                PlacesListItemButtonContentView(location: location)
+            }
+        } else {
+            NavigationLink(destination: {
+                UserPlaceView(viewModel: viewModel.getUserPlaceViewModel())
+            }, label: {
+                PlacesListItemUserLocationContentView()
+            })
+        }
+    }
+    
+}
+
+private struct PlacesListItemUserLocationContentView: View {
+    var body: some View {
+        HStack {
+            Text(Labels.didNotFindYourLocation.rawValue)
+                .font(.headline)
+                .foregroundColor(.white)
+                .shadow(color: .white, radius: 2, x: 0, y: 0)
+            Spacer()
+            Image(systemName: Icons.locationInfo.rawValue)
+                .foregroundColor(.white)
+        }.padding()
+    }
+}
+
+private struct PlacesListItemButtonContentView: View {
         
-        let viewModel: PlacesListItemViewModel
+        let location: Location
         
         var body: some View {
             HStack {
-                PlacesListItemTextView(viewModel: viewModel)
+                PlacesListItemTextView(location: location)
                 Spacer()
                 Image(systemName: Icons.locationInfo.rawValue)
                     .foregroundColor(.white)
@@ -46,15 +77,15 @@ private struct PlacesListItemContentView: View {
 
 private struct PlacesListItemTextView: View {
     
-    let viewModel: PlacesListItemViewModel
+    let location: Location
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(viewModel.location.name ?? Labels.defaultLocationName.rawValue)
+            Text(location.name ?? Labels.defaultLocationName.rawValue)
                 .font(.headline)
                 .foregroundColor(.white)
                 .shadow(color: .white, radius: 2, x: 0, y: 0) // Shiny text effect
-            Text("\(Labels.lat.rawValue) \(viewModel.location.lat) \(Labels.long.rawValue) \(viewModel.location.long)")
+            Text("\(Labels.lat.rawValue) \(location.lat) \(Labels.long.rawValue) \(location.long)")
                 .font(.subheadline)
                 .foregroundColor(.white)
                 .shadow(color: .white, radius: 2, x: 0, y: 0) // Shiny text effect

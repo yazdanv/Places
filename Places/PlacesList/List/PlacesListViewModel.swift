@@ -28,9 +28,12 @@ class PlacesListViewModel: ObservableObject {
     }
     
     private func setLocations(locations: Locations) {
-        self.itemViewModels = locations.locations.map {
+        var mappedViewModels = locations.locations.map {
             PlacesListItemViewModel(location: $0, urlOpenHandler: urlOpenHandler)
         }
+        // Add the last item viewModel
+        mappedViewModels.append(PlacesListItemViewModel())
+        self.itemViewModels = mappedViewModels
     }
     
     private func stopLoading() {

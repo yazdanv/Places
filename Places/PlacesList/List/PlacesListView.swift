@@ -24,8 +24,6 @@ struct PlacesListView: View {
         } else {
             PlacesListContentView(viewModel: viewModel)
         }
-        
-        
     }
 }
 
@@ -149,7 +147,7 @@ private struct PlacesListContentView: View {
         NavigationView {
             ScrollView {
                 LazyVStack {
-                    ForEach(viewModel.itemViewModels, id: \.location.id) { item in
+                    ForEach(viewModel.itemViewModels, id: \.id) { item in
                         PlacesListItemView(viewModel: item)
                     }
                 }

@@ -13,12 +13,17 @@ enum Constants: String {
 
 enum Labels: String {
     case title = "Places"
+    case userLocation = "User Location"
+    case didNotFindYourLocation = "Did not find your location? open it here"
     case defaultLocationName = "No Name"
     case long = "Longitude:"
     case lat = "Latitude:"
     case unknownError = "Unknown Error"
     case error = "Error:"
     case retry = "Retry"
+    
+    case enterLocation = "Enter Location Coordinates"
+    case openInWikipedia = "Open in Wikipedia"
 }
 
 enum Icons: String {
